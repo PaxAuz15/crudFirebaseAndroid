@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2b8"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Insertar Registro"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+        <EditText
+            android:id="@+id/inputSerialNumber"
+            android:textColor="@color/white"
+            android:hint="Número de Serie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"/>
+        <EditText
+            android:id="@+id/inputDescription"
+            android:hint="Descripción"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"/>
+
+        <EditText
+            android:id="@+id/inputProcessor"
+            android:hint="Procesador"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"/>
+
+        <EditText
+            android:id="@+id/inputRamMemory"
+            android:hint="Memoria RAM"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"/>
+
+        <EditText
+            android:id="@+id/inputHardDisk"
+            android:hint="Disco Duro"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"/>
+
+        <EditText
+            android:id="@+id/inputOperativeSystem"
+            android:hint="Sistema Operativo"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"/>
+
+        <EditText
+            android:id="@+id/inputPorts"
+            android:hint="Puertos USB"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"/>
+
+        <EditText
+            android:id="@+id/inputConnectivity"
+            android:hint="Conectividad"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"/>
+
+        <EditText
+            android:id="@+id/inputCameras"
+            android:hint="Cámara"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"/>
+
+        <Button
+            android:id="@+id/btnInsert"
+            android:text="INSERTAR"
+            android:paddingTop="10dp"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>
