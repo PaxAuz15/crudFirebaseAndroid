@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp">
+
+    <TextView
+        android:id="@+id/lblSerialNumbers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Num. de Series: "
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/serialNumbers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xxx"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/lblSerialNumbers"
+        android:paddingLeft="5dp"/>
+
+    <TextView
+        android:id="@+id/lblDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_below="@id/lblSerialNumbers"
+        android:text="Descripción: "
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xxx"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/lblDescription"
+        android:layout_below="@id/serialNumbers"
+        android:paddingLeft="5dp"/>
+
+    <TextView
+        android:id="@+id/lblProcessor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_below="@id/lblDescription"
+        android:text="Procesador: "
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/Processor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xxx"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/lblProcessor"
+        android:layout_below="@id/Description"
+        android:paddingLeft="5dp"/>
+
+    <TextView
+        android:id="@+id/lblMemoryRam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_below="@id/lblProcessor"
+        android:text="Memoria RAM: "
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/memoryRam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xxx"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/lblMemoryRam"
+        android:layout_below="@id/Processor"
+        android:paddingLeft="5dp"/>
+
+    <TextView
+        android:id="@+id/lblHardDisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_below="@id/lblMemoryRam"
+        android:text="Disco Duro: "
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/HardDisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xxx"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/lblHardDisk"
+        android:layout_below="@id/memoryRam"
+        android:paddingLeft="5dp"/>
+
+    <TextView
+        android:id="@+id/lblOperativeSystem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_below="@id/lblHardDisk"
+        android:text="Sistema Operativo: "
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/OperativeSystem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xxx"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/lblOperativeSystem"
+        android:layout_below="@id/HardDisk"
+        android:paddingLeft="5dp"/>
+
+    <TextView
+        android:id="@+id/lblPorts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_below="@id/lblOperativeSystem"
+        android:text="Puertos: "
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/Ports"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xxx"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/lblPorts"
+        android:layout_below="@id/OperativeSystem"
+        android:paddingLeft="5dp"/>
+
+    <TextView
+        android:id="@+id/lblConnectivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_below="@id/lblPorts"
+        android:text="Conectividad: "
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/Connectivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xxx"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/lblConnectivity"
+        android:layout_below="@id/Ports"
+        android:paddingLeft="5dp"/>
+
+    <TextView
+        android:id="@+id/lblCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_below="@id/lblConnectivity"
+        android:text="Cámara: "
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/Camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xxx"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/lblCamera"
+        android:layout_below="@id/Connectivity"
+        android:paddingLeft="5dp"/>
+
+    <TextView
+        android:id="@+id/lblDateRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_below="@id/lblCamera"
+        android:text="Fecha de Mod.: "
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/DateRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2021-03-20 10:35:20"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/lblDateRegister"
+        android:layout_below="@id/Camera"
+        android:paddingLeft="5dp"/>
+
+</RelativeLayout>
