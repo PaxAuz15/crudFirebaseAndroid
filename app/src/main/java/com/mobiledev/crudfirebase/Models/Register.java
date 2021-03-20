@@ -13,7 +13,7 @@ public class Register {
     private String connectivity;
     private String camera;
     private String dateRegister;
-    private String timestamp;
+    private long timestamp;
 
     public String getIdRegister() {
         return idRegister;
@@ -103,11 +103,16 @@ public class Register {
         this.dateRegister = dateRegister;
     }
 
-    public String getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return numberSerial;
     }
 }
