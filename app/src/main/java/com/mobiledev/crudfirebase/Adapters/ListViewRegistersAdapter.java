@@ -52,7 +52,7 @@ public class ListViewRegistersAdapter extends BaseAdapter {
                     true);
         }
         TextView serialNumbers = rowView.findViewById(R.id.serialNumbers);
-        TextView description = rowView.findViewById(R.id.DateRegister);
+        TextView description = rowView.findViewById(R.id.Description);
         TextView processor = rowView.findViewById(R.id.Processor);
         TextView memoryRam = rowView.findViewById(R.id.memoryRam);
         TextView hardDisk = rowView.findViewById(R.id.HardDisk);

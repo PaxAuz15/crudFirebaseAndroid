@@ -104,18 +104,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initialFirebase(){
+    private void initialFirebase() {
         FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
     }
 
-    private void listRegister(){
+    private void listRegister() {
         databaseReference.child("Registers").orderByChild("timestamp").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 listRegisters.clear();
-                for(DataSnapshot objSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot objSnapshot : dataSnapshot.getChildren()) {
                     Register r = objSnapshot.getValue(Register.class);
                     listRegisters.add(r);
                 }
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.crud_menu,menu);
+        getMenuInflater().inflate(R.menu.crud_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -157,16 +157,65 @@ public class MainActivity extends AppCompatActivity {
         String connectivity = inputConnectivity.getText().toString();
         String camera = inputCamera.getText().toString();
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.add_menu:
                 insert();
+                break;
+            case R.id.save_menu:
+                if (registerSelected != null) {
+                    if(validateInputs() == false){
+                        Register r = new Register();
+                        r.setIdRegister(registerSelected.getIdRegister());
+                        r.setNumberSerial(serialNumber);
+                        r.setDescription(description);
+                        r.setProcessor(processor);
+                        r.setMemoryRam(memoryRam);
+                        r.setHardDisk(hardDisk);
+                        r.setOperativeSystem(operativeSystem);
+                        r.setPorts(ports);
+                        r.setConnectivity(connectivity);
+                        r.setCamera(camera);
+                        r.setDateRegister(registerSelected.getDateRegister());
+                        r.setTimestamp(getDateMls() * -1);
+                        databaseReference.child("Registers").child(r.getIdRegister()).setValue(r);
+                        Toast.makeText(
+                                this,
+                                "Actualizado Correctamente",
+                                Toast.LENGTH_LONG).show();
+                        linearLayoutEdit.setVisibility(View.GONE);
+                        registerSelected = null;
+                    }
+                } else {
+                    Toast.makeText(
+                            this,
+                            "Seleccione un Registro",
+                            Toast.LENGTH_LONG).show();
+                }
+                break;
+            case R.id.delete_menu:
+                if(registerSelected!=null){
+                    Register r2 = new Register();
+                    r2.setIdRegister(registerSelected.getIdRegister());
+                    databaseReference.child("Registers").child(r2.getIdRegister()).removeValue();
+                    linearLayoutEdit.setVisibility(View.GONE);
+                    registerSelected = null;
+                    Toast.makeText(
+                            this,
+                            "Registro Eliminado",
+                            Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(
+                            this,
+                            "Seleccione un Registro para eliminar",
+                            Toast.LENGTH_LONG).show();
+                }
                 break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void insert(){
+    public void insert() {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(
                 MainActivity.this
         );
@@ -199,25 +248,25 @@ public class MainActivity extends AppCompatActivity {
                 String connectivity = mInputConnectivity.getText().toString();
                 String camera = mInputCamera.getText().toString();
 
-                if (serialNumber.isEmpty() || serialNumber.length()<9){
+                if (serialNumber.isEmpty() || serialNumber.length() < 9) {
                     showError(mInputSerialNumber, "Número de Serie inválido (Mínimo 9 caracteres)");
-                } else if(description.isEmpty()){
+                } else if (description.isEmpty()) {
                     showError(mInputDescription, "Debe tener una descripción");
-                }else if(processor.isEmpty()){
+                } else if (processor.isEmpty()) {
                     showError(mInputProcessor, "Debe tener un procesador");
-                }else if(memoryRam.isEmpty()){
+                } else if (memoryRam.isEmpty()) {
                     showError(mInputMemoryRam, "Debe tener memoria RAM");
-                }else if(hardDisk.isEmpty()){
+                } else if (hardDisk.isEmpty()) {
                     showError(mInputHardDisk, "Debe tener un disco duro");
-                }else if(operativeSystem.isEmpty()){
+                } else if (operativeSystem.isEmpty()) {
                     showError(mInputOperativeSystem, "Debe tener un OS");
-                }else if(port.isEmpty()){
+                } else if (port.isEmpty()) {
                     showError(mInputPort, "Debe tener puertos de conexión");
-                }else if(connectivity.isEmpty()){
+                } else if (connectivity.isEmpty()) {
                     showError(mInputConnectivity, "Debe tener conectividad disponible");
-                }else if(camera.isEmpty()){
+                } else if (camera.isEmpty()) {
                     showError(mInputCamera, "Debe tener alguna cámara");
-                }else{
+                } else {
                     Register r = new Register();
                     r.setIdRegister(UUID.randomUUID().toString());
                     r.setNumberSerial(serialNumber);
@@ -230,34 +279,79 @@ public class MainActivity extends AppCompatActivity {
                     r.setConnectivity(connectivity);
                     r.setCamera(camera);
                     r.setDateRegister(getDateNormal(getDateMls()));
-                    r.setTimestamp(getDateMls()*-1);
+                    r.setTimestamp(getDateMls() * -1);
                     databaseReference.child("Registers").child(r.getIdRegister()).setValue(r);
                     Toast.makeText(
                             MainActivity.this,
                             "Registrado correctamente",
                             Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
                 }
             }
         });
     }
-    public void showError(EditText input, String message){
+
+    public void showError(EditText input, String message) {
         input.requestFocus();
         input.setError(message);
     }
 
-    public long getDateMls(){
+    public long getDateMls() {
         Calendar calendar = Calendar.getInstance();
         long timeUnix = calendar.getTimeInMillis();
 
-        return  timeUnix;
+        return timeUnix;
     }
 
-    public String getDateNormal(long dateMls){
+    public String getDateNormal(long dateMls) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT-5"));
 
         String date = sdf.format(dateMls);
 
         return date;
+    }
+
+    public boolean validateInputs() {
+        String serialNumber = inputSerialNumber.getText().toString();
+        String description = inputDescription.getText().toString();
+        String processor = inputProcessor.getText().toString();
+        String memoryRam = inputMemoryRam.getText().toString();
+        String hardDisk = inputHardDisk.getText().toString();
+        String operativeSystem = inputOperativeSystem.getText().toString();
+        String ports = inputPort.getText().toString();
+        String connectivity = inputConnectivity.getText().toString();
+        String camera = inputCamera.getText().toString();
+
+        if (serialNumber.isEmpty() || serialNumber.length() < 9) {
+            showError(inputSerialNumber, "Número de serie inválido. (Min. 9 caracteres)");
+            return true;
+        } else if (description.isEmpty()) {
+            showError(inputDescription, "Debe tener una descripción");
+            return true;
+        } else if (processor.isEmpty()) {
+            showError(inputProcessor, "Debe tener un procesador");
+            return true;
+        } else if (memoryRam.isEmpty()) {
+            showError(inputMemoryRam, "Debe tener memoria RAM");
+            return true;
+        } else if (hardDisk.isEmpty()) {
+            showError(inputHardDisk, "Debe tener un disco duro");
+            return true;
+        } else if (operativeSystem.isEmpty()) {
+            showError(inputOperativeSystem, "Debe tener un OS");
+            return true;
+        } else if (ports.isEmpty()) {
+            showError(inputPort, "Debe tener puertos de conexión");
+            return true;
+        } else if (connectivity.isEmpty()) {
+            showError(inputConnectivity, "Debe tener conectividad disponible");
+            return true;
+        } else if (camera.isEmpty()) {
+            showError(inputCamera, "Debe tener alguna cámara");
+            return true;
+        } else {
+            return false;
+        }
     }
 }
